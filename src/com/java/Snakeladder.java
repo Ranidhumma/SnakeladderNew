@@ -17,7 +17,7 @@ public class Snakeladder {
 	public static void checkOption(int dice) {
 		Random random = new Random();
 		int option = random.nextInt(3);
-		if (option == LADDER) {
+		if ((option == LADDER) && (position+dice <= 100)) {
 			  position += dice;
 		}
 		else if (option == SNAKE) {
@@ -25,15 +25,24 @@ public class Snakeladder {
 		}
 		else {
 			   position = position;
+	     if (position < 0) {
+	    	 position =0;
+	     }
 		}
 	}
 			public static void main(String[] args) {
+				int diceCount = 0;
 				while(position<100) {
-					int dice = diceroll();
-	System.out.println("dice= " +dice);
-	 checkOption(dice);
-	System.out.println("Position= " +position);
-	}
+				int dice = diceroll();
+	            System.out.println("dice= " +dice);
+	            diceCount++;
+	            checkOption(dice);
+	            System.out.println("Position= " +position);
+				}
+				System.out.println("diceCount= " +diceCount);
+				
+			
+			}
 
 }
-}
+
